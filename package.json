@@ -1,0 +1,25 @@
+{
+  "name": "story",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "keywords": [
+    "story",
+    "utils",
+    "eslint",
+    "cli"
+  ],
+  "author": "sonxiaopeng",
+  "license": "MIT",
+  "packageManager": "pnpm@7.12.2",
+  "engines": {
+    "pnpm": ">=7.12.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "typescript": "^5.0.4"
+  }
+}
