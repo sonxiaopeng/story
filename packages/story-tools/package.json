@@ -1,0 +1,22 @@
+{
+  "name": "@story/tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "test": "echo 开始测试",
+    "build": "tsc && tsc -p tsconfig.cjs.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "es",
+    "tsconfig.json"
+  ],
+  "devDependencies": {
+    "typescript": "5.0.4"
+  }
+}
