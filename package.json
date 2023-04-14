@@ -19,7 +19,9 @@
     "pnpm": ">=7.12.2"
   },
   "devDependencies": {
-    "eslint": "^8.38.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@story/beauty": "workspace:^1.0.0"
   }
 }

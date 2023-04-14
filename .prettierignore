@@ -1,0 +1,9 @@
+dist/
+node_modules/
+lib/
+es/
+
+packages/story-tools/lib/
+packages/story-tools/es/
+
+packages/story-beauty/lib/

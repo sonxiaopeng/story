@@ -8,3 +8,9 @@ node_modules
 .DS_Store
 *.vsix
 package-lock.json
+
+
+packages/story-tools/lib/
+packages/story-tools/es/
+
+packages/story-beauty/lib/

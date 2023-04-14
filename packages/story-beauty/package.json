@@ -1,0 +1,31 @@
+{
+  "name": "@story/beauty",
+  "version": "1.0.0",
+  "description": "this is a lint tool for web developer to build applications quicky!",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "story",
+    "lint"
+  ],
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "author": "songxiaopeng",
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^2.8.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
+}
