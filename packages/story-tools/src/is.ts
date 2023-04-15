@@ -1,16 +1,5 @@
+import { URL, EMAIL, PHONE, IDCARD, IPV4, EXTERNAL } from './reg'
 // 这个模块主要的功能是输出若干个布尔类型的值，可用来判断各种各样的逻辑
-
-const URL =
-  /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
-const EMAIL =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const PHONE =
-  /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
-
-const IDCARD = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
-
-const IPV4 =
-  /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/
 
 export const _toString = Object.prototype.toString
 
@@ -29,10 +18,6 @@ export function isNotExist(value: any): boolean {
 
 export function isExist(value: any): boolean {
   return !isNotExist(value)
-}
-
-export function isExternal(path: any): boolean {
-  return /^(https?:|mailto:|tel:)/.test(path)
 }
 
 export function isPrimitive(value: any): boolean {
@@ -114,6 +99,22 @@ export function isPromise(value: any): boolean {
   )
 }
 
+export function isDate(value: any): boolean {
+  return _toString.call(value) === '[object Date]'
+}
+
+export function isFormData(value: any): boolean {
+  return _toString.call(value) === '[object FormData]'
+}
+
+export function isBlob(value: any): boolean {
+  return _toString.call(value) === '[object Blob]'
+}
+
+export function isFile(value: any): boolean {
+  return value instanceof File
+}
+
 // 正则表达式
 
 export function isURL(url: string) {
@@ -141,4 +142,8 @@ export function isIDCard(id: string): boolean {
 
 export function isIPV4(ip: string) {
   return IPV4.test(ip)
+}
+
+export function isExternal(path: any): boolean {
+  return EXTERNAL.test(path)
 }
