@@ -1,9 +1,6 @@
 import { isDate, isString, isNumber } from './is'
 
 export function parseTime(time: any, cFormat: string) {
-  if (arguments.length === 0) {
-    return null
-  }
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
   let date
   if (isDate(time)) {
@@ -26,7 +23,7 @@ export function parseTime(time: any, cFormat: string) {
     s: date.getSeconds(),
     a: date.getDay(),
   }
-  const time_str = format.replace(
+  return format.replace(
     /{(y|m|d|h|i|s|a)+}/g,
     (result, key: keyof typeof formatObj) => {
       let value = formatObj[key]
@@ -39,5 +36,56 @@ export function parseTime(time: any, cFormat: string) {
       return value || 0
     }
   )
-  return time_str
+}
+
+/**
+ * @param {number} time
+ * @param {string} option
+ * @returns {string}
+ */
+export function formatTime(time: number, option: string) {
+  if (('' + time).length === 10) {
+    time = parseInt(time + '') * 1000
+  } else {
+    time = +time
+  }
+  const d = new Date(time)
+  const now = Date.now()
+
+  const diff = (now - d.getTime()) / 1000
+
+  if (diff < 30) {
+    return '刚刚'
+  } else if (diff < 3600) {
+    // less 1 hour
+    return Math.ceil(diff / 60) + '分钟前'
+  } else if (diff < 3600 * 24) {
+    return Math.ceil(diff / 3600) + '小时前'
+  } else if (diff < 3600 * 24 * 2) {
+    return '1天前'
+  }
+  if (option) {
+    return parseTime(time, option)
+  } else {
+    return (
+      d.getMonth() +
+      1 +
+      '月' +
+      d.getDate() +
+      '日' +
+      d.getHours() +
+      '时' +
+      d.getMinutes() +
+      '分'
+    )
+  }
+}
+
+export function uuid(length = 32): string {
+  const num = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+  let str = ''
+  for (let i = 0; i < length; i++) {
+    str += num.charAt(Math.floor(Math.random() * num.length))
+  }
+  return str
 }

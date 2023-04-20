@@ -8,5 +8,5 @@ export const PHONE = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]
 export const IDCARD = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
 // prettier-ignore
 export const IPV4 = /((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/
-
+// prettier-ignore
 export const EXTERNAL = /^(https?:|mailto:|tel:)/

@@ -61,7 +61,7 @@ export function isSymbol(value: any) {
   return false
 }
 
-export function isArray(value: any): boolean {
+export function isArray<K = any>(value: any): value is Array<K> {
   if (typeof Array.isArray === 'undefined') {
     return _toString.call(value) === '[object Array]'
   }
@@ -89,6 +89,10 @@ export function isEmpty(value: any) {
 
 export function isRegExp(value: any): boolean {
   return _toString.call(value) === '[object RegExp]'
+}
+
+export function isFunction(value: any): boolean {
+  return _toString.call(value) === '[object Function]'
 }
 
 export function isPromise(value: any): boolean {

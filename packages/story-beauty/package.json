@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "this is a lint tool for web developer to build applications quicky!",
   "main": "lib/index.js",
+  "private": false,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "echo this is story-beauty"
   },
   "keywords": [
     "story",
