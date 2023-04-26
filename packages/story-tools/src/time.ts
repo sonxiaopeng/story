@@ -38,11 +38,6 @@ export function parseTime(time: any, cFormat: string) {
   )
 }
 
-/**
- * @param {number} time
- * @param {string} option
- * @returns {string}
- */
 export function formatTime(time: number, option: string) {
   if (('' + time).length === 10) {
     time = parseInt(time + '') * 1000

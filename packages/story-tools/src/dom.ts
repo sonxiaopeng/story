@@ -142,7 +142,7 @@ export function addStyle(element: HTMLElement, style: CSSProperties) {
 export function getTextWidth(text: string, px: number = 14) {
   const span = document.createElement('span')
   span.innerText = text
-  span.style.width = px + 'px'
+  span.style.fontSize = px + 'px'
   document.body.appendChild(span)
   const width = span.offsetWidth
   document.body.removeChild(span)
@@ -200,6 +200,10 @@ export function base64ToUrl(base64: string, fileName = 'demo.png') {
     u8arr[n] = batr.charCodeAt(n)
   }
   const file = new File([u8arr], fileName, { type: 'mine' })
+  return window.URL.createObjectURL(file)
+}
+
+export function fileToUrl(file: File) {
   return window.URL.createObjectURL(file)
 }
 
@@ -288,4 +292,49 @@ export function getElementPosition(element: HTMLElement) {
     top: actualTop,
     left: actualLeft,
   }
+}
+
+export function getScrollOffset() {
+  if (window.pageXOffset) {
+    return {
+      x: window.pageXOffset,
+      y: window.pageYOffset,
+    }
+  } else {
+    return {
+      x: document.body.scrollLeft + document.documentElement.scrollLeft,
+      y: document.body.scrollTop + document.documentElement.scrollTop,
+    }
+  }
+}
+
+// 15、获得视口的尺寸
+export function getViewportOffset() {
+  if (window.innerWidth) {
+    return {
+      w: window.innerWidth,
+      h: window.innerHeight,
+    }
+  } else {
+    // ie8及其以下
+    if (document.compatMode === 'BackCompat') {
+      // 怪异模式
+      return {
+        w: document.body.clientWidth,
+        h: document.body.clientHeight,
+      }
+    } else {
+      // 标准模式
+      return {
+        w: document.documentElement.clientWidth,
+        h: document.documentElement.clientHeight,
+      }
+    }
+  }
+}
+
+export function getStyle(element: HTMLElement, prop: keyof CSSProperties) {
+  return window.getComputedStyle
+    ? window.getComputedStyle(element, null)[prop]
+    : element.style[prop]
 }
