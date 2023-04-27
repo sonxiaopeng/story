@@ -1,11 +1,14 @@
 {
-  "name": "@story/tools",
+  "name": "story-tools",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "private": false,
   "scripts": {
-    "test": "echo 开始测试",
+    "pretest": "echo pretest",
+    "posttest": "echo prepost",
+    "test": "echo this is story-tools",
     "build": "tsc && tsc -p tsconfig.cjs.json"
   },
   "keywords": [],
@@ -14,7 +17,8 @@
   "files": [
     "lib",
     "es",
-    "tsconfig.json"
+    "tsconfig.json",
+    "package.json"
   ],
   "devDependencies": {
     "typescript": "5.0.4"
