@@ -4,11 +4,11 @@ import { URL, EMAIL, PHONE, IDCARD, IPV4, EXTERNAL } from './reg'
 export const _toString = Object.prototype.toString
 
 /* 对于值的判断 */
-export function isTrue(value: any): boolean {
+export function isTrue(value: any): value is true {
   return value === true
 }
 
-export function isFalse(value: any): boolean {
+export function isFalse(value: any): value is false {
   return value === false
 }
 
@@ -20,7 +20,9 @@ export function isExist(value: any): boolean {
   return !isNotExist(value)
 }
 
-export function isPrimitive(value: any): boolean {
+type Primitive = string | number | symbol | boolean
+
+export function isPrimitive(value: any): value is Primitive {
   return (
     typeof value === 'string' ||
     typeof value === 'number' ||
@@ -29,14 +31,14 @@ export function isPrimitive(value: any): boolean {
   )
 }
 
-export function isString(value: any) {
+export function isString(value: any): value is string {
   if (typeof value === 'string' || value instanceof String) {
     return true
   }
   return false
 }
 
-export function isNumber(value: any) {
+export function isNumber(value: any): value is number {
   if (
     typeof value === 'number' ||
     value instanceof Number ||
@@ -47,14 +49,14 @@ export function isNumber(value: any) {
   return false
 }
 
-export function isBoolean(value: any) {
+export function isBoolean(value: any): value is boolean {
   if (typeof value === 'boolean' || value instanceof Boolean) {
     return true
   }
   return false
 }
 
-export function isSymbol(value: any) {
+export function isSymbol(value: any): value is symbol {
   if (typeof value === 'symbol' || value instanceof Symbol) {
     return true
   }
@@ -68,16 +70,20 @@ export function isArray<K = any>(value: any): value is Array<K> {
   return Array.isArray(value)
 }
 
-export function isObject(value: any): boolean {
+type Complex = object | any[] | Function | RegExp | FormData | File | any
+
+export function isComplex(value: any): value is Complex {
   // 可能是array
   return value !== null && typeof value === 'object'
 }
 
-export function isPlainObject(value: any): boolean {
+export function isPlainObject<K = any>(value: any): value is Record<string, K> {
   return _toString.call(value) === '[object Object]'
 }
 
-export function isEmpty(value: any) {
+type Empty = '' | 0 | null | undefined | [] | {}
+
+export function isEmpty(value: any): value is Empty {
   return (
     value === null ||
     value === undefined ||
@@ -87,15 +93,15 @@ export function isEmpty(value: any) {
   )
 }
 
-export function isRegExp(value: any): boolean {
+export function isRegExp(value: any): value is RegExp {
   return _toString.call(value) === '[object RegExp]'
 }
 
-export function isFunction(value: any): boolean {
+export function isFunction(value: any): value is Function {
   return _toString.call(value) === '[object Function]'
 }
 
-export function isPromise(value: any): boolean {
+export function isPromise<T = any>(value: any): value is Promise<T> {
   return (
     isExist(value) &&
     typeof value.then === 'function' &&
@@ -103,32 +109,32 @@ export function isPromise(value: any): boolean {
   )
 }
 
-export function isDate(value: any): boolean {
+export function isDate(value: any): value is Date {
   return _toString.call(value) === '[object Date]'
 }
 
-export function isFormData(value: any): boolean {
+export function isFormData(value: any): value is FormData {
   return _toString.call(value) === '[object FormData]'
 }
 
-export function isBlob(value: any): boolean {
+export function isBlob(value: any): value is Blob {
   return _toString.call(value) === '[object Blob]'
 }
 
-export function isFile(value: any): boolean {
+export function isFile(value: any): value is File {
   return value instanceof File
 }
 
 // 正则表达式
 
-export function isURL(url: string) {
+export function isURL(url: string): boolean {
   if (!isString(url)) {
     return false
   }
   return URL.test(url)
 }
 
-export function isEmail(email: string) {
+export function isEmail(email: string): boolean {
   if (!isString(email)) {
     return false
   }
@@ -144,7 +150,7 @@ export function isIDCard(id: string): boolean {
   return IDCARD.test(id)
 }
 
-export function isIPV4(ip: string) {
+export function isIPV4(ip: string): boolean {
   return IPV4.test(ip)
 }
 

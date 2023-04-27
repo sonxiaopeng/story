@@ -28,3 +28,15 @@ export function multiListener(element: HTMLElement, eventGroups: EventGroup[]) {
   })
   return offlist
 }
+
+export function copyListener(
+  handler: globalThis.EventListener | EventListenerObject
+) {
+  return listener(document.body, 'copy', handler, false)
+}
+
+export function pasteListener(
+  handler: globalThis.EventListener | EventListenerObject
+) {
+  return listener(document.body, 'paste', handler, false)
+}
