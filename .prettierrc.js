@@ -1,4 +1,4 @@
-const beauty = require('@story/beauty')
+const beauty = require('story-beauty')
 module.exports = {
   ...beauty.prettier,
 }

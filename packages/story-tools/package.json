@@ -1,5 +1,5 @@
 {
-  "name": "@story/tools",
+  "name": "story-tools",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
