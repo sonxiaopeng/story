@@ -50,7 +50,7 @@ export function getLocal(key: string) {
 export function traverse(root: HTMLElement, callback: Callback) {
   root = root || document.body
   function quark(element: HTMLElement) {
-    if (isEmpty(element)) return
+    if (!element) return
     callback(element)
     for (let index = 0; index < element.childNodes.length; index++) {
       const node = element.childNodes[index] as HTMLElement

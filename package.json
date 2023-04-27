@@ -1,11 +1,12 @@
 {
-  "name": "story",
+  "name": "goodstory",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "private": false,
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "release": "node scripts/publish.mjs"
   },
   "keywords": [
     "story",
@@ -23,6 +24,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@story/beauty": "workspace:^1.0.0"
+    "execa": "^7.1.1",
+    "ora": "^6.3.0",
+    "story-beauty": "workspace:^1.0.0"
   }
 }

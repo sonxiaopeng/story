@@ -25,15 +25,16 @@ export function parseTime(time: any, cFormat: string) {
   }
   return format.replace(
     /{(y|m|d|h|i|s|a)+}/g,
-    (result, key: keyof typeof formatObj) => {
-      let value = formatObj[key]
+    (result, key) => {
+      let value = formatObj[key as keyof typeof formatObj];
+      let string:string = ""
       if (key === 'a') {
         return ['日', '一', '二', '三', '四', '五', '六'][value]
       }
       if (result.length > 0 && value < 10) {
-        value = '0' + value
+        string = '0' + value
       }
-      return value || 0
+      return string 
     }
   )
 }
