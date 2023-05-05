@@ -8,7 +8,7 @@
   "scripts": {
     "pretest": "echo pretest",
     "posttest": "echo prepost",
-    "test": "echo this is story-tools",
+    "test": "jest",
     "build": "tsc && tsc -p tsconfig.cjs.json"
   },
   "keywords": [],

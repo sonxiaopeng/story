@@ -1,11 +1,11 @@
-import { isEmpty, isExternal } from './is'
+import { isExternal } from '../is'
 import {
   Callback,
   CSSProperties,
   WritableHTMLLinkElement,
   WritableHTMLScriptElement,
   InjectOptions,
-} from './type'
+} from '../type'
 
 // 这是一个针对dom环境的函数库，主要用户web应用的
 
