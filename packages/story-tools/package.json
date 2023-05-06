@@ -8,7 +8,7 @@
   "scripts": {
     "pretest": "echo pretest",
     "posttest": "echo prepost",
-    "test": "echo this is story-tools",
+    "test": "jest",
     "build": "tsc && tsc -p tsconfig.cjs.json"
   },
   "keywords": [],
@@ -21,6 +21,8 @@
     "package.json"
   ],
   "devDependencies": {
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
     "typescript": "5.0.4"
   }
 }

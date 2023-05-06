@@ -1,4 +1,4 @@
-import { URL, EMAIL, PHONE, IDCARD, IPV4, EXTERNAL } from './reg'
+import { URL, EMAIL, PHONE, IDCARD, IPV4, EXTERNAL } from '../reg'
 // 这个模块主要的功能是输出若干个布尔类型的值，可用来判断各种各样的逻辑
 
 export const _toString = Object.prototype.toString

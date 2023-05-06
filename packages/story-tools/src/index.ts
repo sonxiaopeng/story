@@ -1,4 +1,5 @@
-export * from './is'
-export * from './dom'
+export * from './is/index'
+export * from './dom/index'
 export * from './time'
 export * from './reg'
+export * from './event/index'
