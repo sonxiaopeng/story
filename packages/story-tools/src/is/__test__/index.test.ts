@@ -7,6 +7,18 @@ import {
   isBoolean,
   isExist,
   isFunction,
+  isEmpty,
+  isPromise,
+  isBlob,
+  isDate,
+  isComplex,
+  isEmail,
+  isExternal,
+  isPlainObject,
+  isPhone,
+  isIDCard,
+  isPrimitive,
+  isIPV4,
 } from '../index'
 
 test('false is false?', () => {
@@ -74,7 +86,7 @@ test('0 is exist', () => {
 })
 
 test('[] is exist', () => {
-  expect(isExist([])).toBe(false)
+  expect(isExist([])).toBe(true)
 })
 
 test('()=>{} is function', () => {
@@ -83,4 +95,97 @@ test('()=>{} is function', () => {
 
 test('a is function', () => {
   expect(isFunction('a')).toBe(false)
+})
+
+test('blank is empty', () => {
+  expect(isEmpty('')).toBe(true)
+})
+
+test('[] is empty', () => {
+  expect(isEmpty([])).toBe(true)
+})
+
+test('{} is empty', () => {
+  expect(isEmpty({})).toBe(true)
+})
+
+test('a is empty', () => {
+  expect(isEmpty('a')).toBe(false)
+})
+
+test('new Promise() is Promise', () => {
+  expect(isPromise(new Promise(() => {}))).toBe(true)
+})
+
+test('[] is Promise', () => {
+  expect(isPromise([])).toBe(false)
+})
+
+test('[] is Blob', () => {
+  expect(isBlob([])).toBe(false)
+})
+
+test('[] is Date', () => {
+  expect(isDate([])).toBe(false)
+})
+
+test('{} is Complex', () => {
+  expect(isComplex({})).toBe(true)
+})
+
+test('{} is Complex', () => {
+  expect(isComplex({})).toBe(true)
+})
+
+test('1 is Complex', () => {
+  expect(isComplex(1)).toBe(false)
+})
+
+test('[] is plainObject', () => {
+  expect(isPlainObject([])).toBe(false)
+})
+
+test('{a:1} is plainObject', () => {
+  expect(isPlainObject({ a: 1 })).toBe(true)
+})
+
+test('aaa@qq.com is email', () => {
+  expect(isEmail('aaa@qq.com')).toBe(true)
+})
+
+test('http://baidu.com', () => {
+  expect(isExternal('http://baidu.com')).toBe(true)
+})
+
+test('18378765653 is Phone', () => {
+  expect(isPhone(18378765653)).toBe(true)
+})
+
+test('a is Phone', () => {
+  expect(isPhone('a')).toBe(false)
+})
+
+test('612425199708086785 is IDCard', () => {
+  const IDCard = '612425199708086785'
+  expect(isIDCard(IDCard)).toBe(true)
+})
+
+test('a is IDCard', () => {
+  expect(isIDCard('a')).toBe(false)
+})
+
+test('[] is primitive', () => {
+  expect(isPrimitive([])).toBe(false)
+})
+
+test('0 is primitive', () => {
+  expect(isPrimitive(0)).toBe(true)
+})
+
+test('10.0.33.129 is IPV4', () => {
+  expect(isIPV4('10.0.33.129')).toBe(true)
+})
+
+test('123 is IPV4', () => {
+  expect(isIPV4('123')).toBe(false)
 })
