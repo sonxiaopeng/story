@@ -1,4 +1,4 @@
-import { isExternal } from '../is'
+import { isExternal } from '../is/index'
 import {
   Callback,
   CSSProperties,
