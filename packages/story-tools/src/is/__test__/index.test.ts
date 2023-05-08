@@ -19,6 +19,10 @@ import {
   isIDCard,
   isPrimitive,
   isIPV4,
+  isFile,
+  isFormData,
+  isRegExp,
+  isSymbol,
 } from '../index'
 
 test('false is false?', () => {
@@ -125,8 +129,18 @@ test('[] is Blob', () => {
   expect(isBlob([])).toBe(false)
 })
 
+test('blob is Blob', () => {
+  const blob = new Blob()
+  expect(isBlob(blob)).toBe(true)
+})
+
 test('[] is Date', () => {
   expect(isDate([])).toBe(false)
+})
+
+test('date is Date', () => {
+  const date = new Date()
+  expect(isDate(date)).toBe(true)
 })
 
 test('{} is Complex', () => {
@@ -188,4 +202,53 @@ test('10.0.33.129 is IPV4', () => {
 
 test('123 is IPV4', () => {
   expect(isIPV4('123')).toBe(false)
+})
+
+test('', () => {
+  expect({ a: 1 }).toEqual({ a: 1 })
+})
+
+// jest --updateSnapshot 通过这个来重新生成快照；
+
+// it('it', () => {
+//   const tree = '<div>1</div>'
+//   expect(tree).toMatchSnapshot()
+// })
+
+test('file is File', () => {
+  var file = new File(['foo'], 'foo.txt', {
+    type: 'text/plain',
+  })
+
+  expect(isFile(file)).toBe(true)
+})
+
+test('0 is File', () => {
+  expect(isFile(0)).toBe(false)
+})
+
+test('formDate is FormData', () => {
+  const formData = new FormData()
+  expect(isFormData(formData)).toBe(true)
+})
+
+test('0 is FormData', () => {
+  expect(isFormData(0)).toBe(false)
+})
+
+test('reg is RegExp', () => {
+  expect(isRegExp(/123/)).toBe(true)
+})
+
+test('0 is RegExp', () => {
+  expect(isRegExp(0)).toBe(false)
+})
+
+test('symbol is Symbol', () => {
+  const symbol = Symbol('foo')
+  expect(isSymbol(symbol)).toBe(true)
+})
+
+test('0 is Symbol', () => {
+  expect(isSymbol(0)).toBe(false)
 })

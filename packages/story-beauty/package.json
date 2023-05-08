@@ -1,6 +1,6 @@
 {
   "name": "story-beauty",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "this is a lint tool for web developer to build applications quicky!",
   "main": "lib/index.js",
   "bin": {
@@ -17,6 +17,7 @@
     "lint"
   ],
   "files": [
+    "bin",
     "lib",
     "package.json"
   ],

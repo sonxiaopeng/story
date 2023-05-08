@@ -1,6 +1,6 @@
 # story-beauty
 
-这是一武断的eslint+perttier方案
+这是一武断的 eslint+perttier 解决方案
 
 # use
 
@@ -13,30 +13,31 @@ yarn add story-beauty -D
 
 第二步：
 
+```sh
+npx beauty // 生成.eslintrc.js 和 .prettierrc.js两个文件
+```
+
+第三步：
+
 in `.eslintrc.js`
 
 ```js
-const beauty = require("story-beauty");
+const beauty = require('story-beauty')
 
 module.exports = {
   ...beauty.eslint,
-  rules:{
+  rules: {
     // 你自己的自定义配置
-  }
+  },
 }
 ```
 
 in `.prettierrc.js`
 
 ```js
-const beauty = require("story-beauty");
+const beauty = require('story-beauty')
 
 module.exports = {
-  ...beauty.prettier
+  ...beauty.prettier,
 }
 ```
-
-
-
-
-
