@@ -1,0 +1,20 @@
+.cut-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .cut-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    outline: 1px solid rgb(18, 11, 219);
+  }
+}

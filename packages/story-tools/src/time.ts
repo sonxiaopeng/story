@@ -1,4 +1,4 @@
-import { isDate, isString, isNumber } from './is'
+import { isDate, isString, isNumber } from './is/index'
 
 export function parseTime(time: any, cFormat: string) {
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
@@ -23,20 +23,17 @@ export function parseTime(time: any, cFormat: string) {
     s: date.getSeconds(),
     a: date.getDay(),
   }
-  return format.replace(
-    /{(y|m|d|h|i|s|a)+}/g,
-    (result, key) => {
-      let value = formatObj[key as keyof typeof formatObj];
-      let string:string = ""
-      if (key === 'a') {
-        return ['日', '一', '二', '三', '四', '五', '六'][value]
-      }
-      if (result.length > 0 && value < 10) {
-        string = '0' + value
-      }
-      return string 
+  return format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+    let value = formatObj[key as keyof typeof formatObj]
+    let string: string = ''
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
     }
-  )
+    if (result.length > 0 && value < 10) {
+      string = '0' + value
+    }
+    return string
+  })
 }
 
 export function formatTime(time: number, option: string) {

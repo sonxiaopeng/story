@@ -1,2 +1,3 @@
 import React from 'react';
-export default function (): React.JSX.Element;
+import './style.scss';
+export default function (): false | React.JSX.Element;
