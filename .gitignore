@@ -9,8 +9,11 @@ node_modules
 *.vsix
 package-lock.json
 
+# sotry-example
+
 
 packages/story-tools/lib/
 packages/story-tools/es/
 
 packages/story-beauty/lib/
+packages/story-cut/es/
