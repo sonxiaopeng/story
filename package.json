@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "execa": "^7.1.1",
+    "marked": "^12.0.1",
     "ora": "^6.3.0",
     "story-beauty": "workspace:^1.0.0"
   }

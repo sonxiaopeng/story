@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 
 function _iterableToArrayLimit(arr, i) {
   var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
@@ -50,95 +50,30 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-function listener(element, eventName, handler) {
-  var option = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  element.addEventListener(eventName, handler, option);
-  return function () {
-    element.removeEventListener(eventName, handler, option);
-  };
-}
-
-function Cut () {
+var CutWrapper = function CutWrapper() {
   var _useState = useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    visible = _useState2[0],
-    setVisible = _useState2[1];
-  var containerRef = useRef(null);
+    _useState2 = _slicedToArray(_useState, 2);
+    _useState2[0];
+    _useState2[1];
   var isDraw = useRef(false);
-  var _useState3 = useState({
+  var _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2);
+    _useState4[0];
+    _useState4[1];
+  var _useState5 = useState({
       startX: 0,
       startY: 0,
       endX: 0,
       endY: 0
     }),
-    _useState4 = _slicedToArray(_useState3, 2),
-    rectPos = _useState4[0],
-    setRectPos = _useState4[1];
-  useEffect(function () {
-    var off = listener(document.body, 'keyup', function (e) {
-      if (e.keyCode === 112) {
-        console.log('说明是F1');
-        setVisible(true);
-      }
-    });
-    return function () {
-      off();
-    };
-  }, []);
-  useEffect(function () {
-    var closeMouseDown;
-    var closeMouseUp;
-    var closeMouseMove;
-    if (visible && containerRef.current) {
-      closeMouseDown = listener(containerRef.current, 'mousedown', function (downEvent) {
-        var clientX = downEvent.clientX,
-          clientY = downEvent.clientY;
-        setRectPos(function (pos) {
-          return Object.assign(Object.assign({}, pos), {
-            startX: clientX,
-            startY: clientY
-          });
-        });
-        if (containerRef.current) {
-          closeMouseMove = listener(containerRef.current, 'mousemove', function (moveEvent) {
-            var clientX = moveEvent.clientX,
-              clientY = moveEvent.clientY;
-            isDraw.current = true;
-            setRectPos(function (pos) {
-              return Object.assign(Object.assign({}, pos), {
-                endX: clientX,
-                endY: clientY
-              });
-            });
-          });
-        }
-      });
-      closeMouseUp = listener(containerRef.current, 'mouseup', function (upEvent) {
-        var clientX = upEvent.clientX,
-          clientY = upEvent.clientY;
-        setRectPos(function (pos) {
-          return Object.assign(Object.assign({}, pos), {
-            endX: clientX,
-            endY: clientY
-          });
-        });
-        // isDraw.current = false
-        closeMouseMove === null || closeMouseMove === void 0 ? void 0 : closeMouseMove();
-      });
-    }
-    return function () {
-      closeMouseDown === null || closeMouseDown === void 0 ? void 0 : closeMouseDown();
-      closeMouseUp === null || closeMouseUp === void 0 ? void 0 : closeMouseUp();
-    };
-  }, [visible]);
+    _useState6 = _slicedToArray(_useState5, 2),
+    rectPos = _useState6[0],
+    setRectPos = _useState6[1];
   var clipPath = useMemo(function () {
     var startX = rectPos.startX,
       startY = rectPos.startY,
       endX = rectPos.endX,
       endY = rectPos.endY;
-    if (!isDraw.current) {
-      return '';
-    }
     var x0 = startX > endX ? endX : startX;
     var y0 = startY > endY ? endY : startY;
     var x1 = startX > endX ? startX : endX;
@@ -162,18 +97,55 @@ function Cut () {
       height: "".concat(y1 - y0, "px")
     };
   }, [rectPos]);
-  return visible && /*#__PURE__*/React.createElement("div", {
+  var onMouseDown = function onMouseDown(event) {
+    isDraw.current = true;
+    var pageX = event.pageX,
+      pageY = event.pageY;
+    setRectPos(function (pos) {
+      return Object.assign(Object.assign({}, pos), {
+        startX: pageX,
+        startY: pageY
+      });
+    });
+  };
+  var onMouseMove = function onMouseMove(event) {
+    if (!isDraw.current) {
+      return;
+    }
+    var pageX = event.pageX,
+      pageY = event.pageY;
+    setRectPos(function (pos) {
+      return Object.assign(Object.assign({}, pos), {
+        endX: pageX,
+        endY: pageY
+      });
+    });
+  };
+  var onMouseUp = function onMouseUp(event) {
+    var pageX = event.pageX,
+      pageY = event.pageY;
+    setRectPos(function (pos) {
+      return Object.assign(Object.assign({}, pos), {
+        endX: pageX,
+        endY: pageY
+      });
+    });
+    isDraw.current = false;
+  };
+  return /*#__PURE__*/React.createElement("div", {
     className: "cut-wrapper",
-    ref: containerRef,
     style: {
       clipPath: clipPath
-    }
+    },
+    onMouseDown: onMouseDown,
+    onMouseMove: onMouseMove,
+    onMouseUp: onMouseUp
   }, /*#__PURE__*/React.createElement("div", {
     className: "cut-container",
     style: rectStyle
   }));
-}
+};
 
-var StoryCut = Cut;
+var StoryCut = CutWrapper;
 
-export { StoryCut };
+export { StoryCut, StoryCut as default };

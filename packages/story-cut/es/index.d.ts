@@ -1,2 +1,3 @@
-import Cut from './core/index';
-export declare const StoryCut: typeof Cut;
+/// <reference types="react" />
+export declare const StoryCut: import("react").FC<{}>;
+export default StoryCut;
